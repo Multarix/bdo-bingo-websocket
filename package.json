@@ -7,11 +7,14 @@
 	"author": "Multarix",
 	"license": "MIT",
 	"scripts": {
+		"preminify": "tsc",
+		"minify": "uglifyjs -c -m -o dist/client/script.min.js -- dist/client/script.js",
+		"prebuild-client": "npm run minify",
+		"build-client": "node tools/prestart.js",
 		"prestart": "tsc",
-		"start": "node tools/prestart.js",
-		"poststart": "node dist/server/main.js",
-		"prebuild": "tsc",
+		"start": "node dist/server/main.js",
 		"build": "docker build -t bingo-websocket .",
+		"prebuild": "tsc",
 		"predocker": "npm run build",
 		"docker": "docker compose up -d"
 	},
@@ -19,20 +22,21 @@
 		"@eslint/js": "^9.26.0",
 		"@stylistic/eslint-plugin": "^4.2.0",
 		"@stylistic/eslint-plugin-migrate": "^4.2.0",
+		"@types/node-cron": "^3.0.11",
+		"@types/uuid": "^10.0.0",
+		"@types/ws": "^8.18.1",
 		"electron": "^35.1.5",
 		"eslint": "^9.26.0",
 		"eslint-plugin-rc-leaflet": "^1.4.0",
 		"globals": "^16.1.0",
 		"typescript-eslint": "^8.32.1",
-		"@types/node-cron": "^3.0.11",
-		"@types/uuid": "^10.0.0",
-		"@types/ws": "^8.18.1"
+		"uglify-js": "^3.19.3"
 	},
 	"dependencies": {
-		"dotenv": "^16.5.0",
 		"axios": "^1.9.0",
 		"chalk": "^5.4.1",
 		"cloudflare": "^4.3.0",
+		"dotenv": "^16.5.0",
 		"node-cron": "^4.0.2",
 		"uuid": "^11.1.0",
 		"ws": "^8.18.2"
