@@ -25,7 +25,7 @@ async function getExternalIP(): Promise<string | null>{
 }
 
 
-async function updateDNSRecord(record: RecordResponse, newIP: string): Promise<void>{
+async function updateDNSRecord(record: RecordResponse, newIP: string){
 	try {
 		client.dns.records.edit(record.id, {
 			zone_id: ZONE_ID as string,
@@ -40,7 +40,7 @@ async function updateDNSRecord(record: RecordResponse, newIP: string): Promise<v
 }
 
 
-export default async function checkAndUpdateIP(): Promise<void>{
+export default async function checkAndUpdateIP(){
 	if(!ZONE_ID) throw new Error("Environment variable `ZONE_ID` is not set");
 	if(!RECORD_ID) throw new Error("Environment variable `Record_ID` is undefined");
 	if(!CLOUDFLARE_API_TOKEN) throw new Error("Environment variable `CLOUDFLARE_API_TOKEN` is undefined");
