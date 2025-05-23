@@ -23,17 +23,11 @@ function setCookie(cookieName: string, value: string){
 }
 
 
-function init(){
-	let uuid = getCookie("uuid");
-	let needsReconnect = (uuid !== "");
+let uuid = getCookie("uuid");
+let needsReconnect = (uuid !== "");
 
-	for(let i = 0; i < 24; i++){
-		const box = document.getElementById(`box${i}`) as HTMLButtonElement;
-		box.addEventListener("click", () => {
-			if(box.className === "happened") box.className = "confirmed";
-		});
-	}
 
+function connectToWebSocket(){
 	const socket = new WebSocket("wss:bingo.multarix.com");
 	socket.addEventListener("open", () => {
 		console.log("[Join] Connected to websocket");
@@ -47,6 +41,7 @@ function init(){
 			socket.send(JSON.stringify(reconnectObj));
 		}
 	});
+
 
 	socket.addEventListener("message", (event) => {
 		const message = event.data;
@@ -78,10 +73,25 @@ function init(){
 		console.log("error: ", event);
 	});
 
+
 	socket.addEventListener("close", () => {
-		console.log("[Left] Disonnected from websocket");
+		console.log("[Left] Disonnected from websocket, attempting to reconnect...");
 		setCookie("uuid", uuid);
+		setTimeout(connectToWebSocket, 1000);
 	});
+}
+
+
+function init(){
+
+	for(let i = 0; i < 24; i++){
+		const box = document.getElementById(`box${i}`) as HTMLButtonElement;
+		box.addEventListener("click", () => {
+			if(box.className === "happened") box.className = "confirmed";
+		});
+	}
+
+	connectToWebSocket();
 }
 
 
