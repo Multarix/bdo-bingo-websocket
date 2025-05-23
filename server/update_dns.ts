@@ -30,8 +30,7 @@ async function updateDNSRecord(record: RecordResponse, newIP: string){
 		client.dns.records.edit(record.id, {
 			zone_id: ZONE_ID as string,
 			content: newIP,
-			proxied: record.proxied || false,
-			ttl: record.ttl || 300
+			proxied: record.proxied || true
 		});
 		log("info", `✅ DNS record updated to point to ${newIP}`);
 	} catch (error){
