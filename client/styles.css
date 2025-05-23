@@ -43,14 +43,13 @@ body {
 	color: var(--font-color);
 	border-radius: 0;
 	border: var(--tile-border);
-	transition: 0.1s;
 	background-color: rgba(40, 40, 50, 1.0);
 	padding: 1em;
 }
 
 .bingoboard button:not(#center):hover {
 	border: 1px solid rgb(120, 70, 70);
-		background-color: rgba(60, 40, 50, 1.0);
+	background-color: rgba(60, 40, 50, 1.0);
 }
 
 .bingoboard button:not(#center).happened:hover {
