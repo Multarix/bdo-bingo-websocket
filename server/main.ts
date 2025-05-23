@@ -15,8 +15,8 @@ f.log("info", "Starting websocket server.");
 updateDNSRecord();
 const ipCheckInterval = setInterval(updateDNSRecord, CHECK_INTERVAL);
 
-const port = 5683;
-const wss = new WebSocketServer({ port });
+const HOST_PORT = 8080;
+const wss = new WebSocketServer({ port: HOST_PORT });
 const pingInterval = setInterval(f.ping.bind(null, wss), 30000); // Every 30 seconds, check if any of the connections were dropped.
 
 wss.on('connection', (ws: BingoSocket) => {
@@ -28,7 +28,7 @@ wss.on('connection', (ws: BingoSocket) => {
 });
 
 wss.on("error", (error) => f.log("error", error.message));
-wss.on("listening", () => f.log("info", `Listening on port: ${chalk.greenBright(port)}`));
+wss.on("listening", () => f.log("info", `Listening on port: ${chalk.greenBright(HOST_PORT)}`));
 wss.on("close", () => {
 	clearInterval(pingInterval);
 	clearInterval(ipCheckInterval);

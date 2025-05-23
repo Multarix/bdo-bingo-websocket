@@ -3,7 +3,7 @@ services:
     container_name: BDO-Bingo-Websocket
     image: bingo-websocket:latest
     ports:
-      - 5683:5683
+      - 8080:8080
     env_file: .env
     environment:
       FORCE_COLOR: 1

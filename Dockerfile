@@ -30,7 +30,7 @@ USER node
 COPY . .
 
 # Expose the port that the application listens on.
-EXPOSE 5683
+EXPOSE 8080
 
 # Run the application.
 CMD ["node", "--no-deprecation", "dist/server/main.js"]
