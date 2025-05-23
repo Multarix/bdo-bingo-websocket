@@ -190,7 +190,7 @@ export function handleMessage(wss: WebSocketServer, ws: BingoSocket, message: Ra
 			obj.recon = true;
 
 			// console.log(obj);
-
+			clearTimeout(disconnectedClients[index].timeout);
 			disconnectedClients.splice(index, 1); // Remove from disconnected clients list
 			return ws.send(JSON.stringify(obj));
 		}
