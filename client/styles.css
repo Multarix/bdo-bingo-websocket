@@ -1,0 +1,91 @@
+:root {
+	--font-color: rgb(245, 245, 245);
+	--background-color: rgb(15, 15, 20);
+	--tile-size: 150px;
+	--tile-border: 1px solid rgb(70, 70, 80);
+	--tile-border-radius: 10px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--background-color);
+	color: var(--font-color);
+}
+
+.bingoboard {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: grid;
+	margin: 0;
+	padding: 0;
+	grid-template-columns: 20% 20% 20% 20% 20%;
+	grid-template-rows: 20% 20% 20% 20% 20%;
+	width: calc(var(--tile-size) * 5);
+	transform: translate(-50%, -50%);
+	
+	border: var(--tile-border);
+	border-radius: 10px;
+}
+.bingoboard button:first-child { border-top-left-radius: var(--tile-border-radius); }
+.bingoboard button:last-child { border-bottom-right-radius: var(--tile-border-radius); }
+.bingoboard button:nth-child(5) { border-top-right-radius: var(--tile-border-radius); }
+.bingoboard button:nth-child(21) { border-bottom-left-radius: var(--tile-border-radius); }
+
+
+
+.bingoboard button {
+	font-weight: bolder;
+	height: var(--tile-size);
+	width: var(--tile-size);
+
+	color: var(--font-color);
+	border-radius: 0;
+	border: var(--tile-border);
+	transition: 0.1s;
+	background-color: rgba(40, 40, 50, 1.0);
+	padding: 1em;
+}
+
+.bingoboard button:not(#center):hover {
+	border: 1px solid rgb(120, 70, 70);
+		background-color: rgba(60, 40, 50, 1.0);
+}
+
+.bingoboard button:not(#center).happened:hover {
+	cursor: pointer;
+	border: 1px solid rgb(80, 120, 70);
+	background-color: rgba(50, 60, 50, 1.0);
+}
+
+
+.bingoboard button:not(#center).confirmed {
+	border: 1px solid rgb(80, 200, 80);
+	background-color: rgb(60, 90, 60);
+	&:hover {
+		border: 1px solid rgb(80, 200, 80);
+		background-color: rgb(60, 90, 60);
+	}
+}
+
+
+#center {
+	--angle: 0deg;
+	background-color: rgba(50, 50, 60, 1.0);
+	border: 1px solid;
+	border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+	animation: 3s rotate linear infinite;
+}
+
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@property --angle {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
