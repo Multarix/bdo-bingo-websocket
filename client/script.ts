@@ -34,7 +34,7 @@ function init(){
 		});
 	}
 
-	const socket = new WebSocket("ws:localhost:5683");
+	const socket = new WebSocket("ws:bingo.multarix.com:5683");
 	socket.addEventListener("open", () => {
 		console.log("[Join] Connected to websocket");
 
