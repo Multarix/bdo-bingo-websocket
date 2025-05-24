@@ -36,7 +36,8 @@ function updateClients(wss: WebSocketServer){
 
 		const obj = {
 			bingoBoard: ws.bingoBoard,
-			hasHappened: hasHappened
+			hasHappened: hasHappened,
+			uuid: ws.uuid as string
 		};
 
 		ws.send(JSON.stringify(obj));

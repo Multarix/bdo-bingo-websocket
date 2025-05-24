@@ -4,6 +4,7 @@
 	--tile-size: 150px;
 	--tile-border: 1px solid rgb(70, 70, 80);
 	--tile-border-radius: 10px;
+	--tile-background: rgba(40, 40, 50, 1.0);
 }
 
 body {
@@ -13,17 +14,20 @@ body {
 	color: var(--font-color);
 }
 
-.bingoboard {
+.container {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	transform: translate(-50%, -50%);
+	width: calc(var(--tile-size) * 5);
+}
+
+.bingoboard {
 	display: grid;
 	margin: 0;
 	padding: 0;
 	grid-template-columns: 20% 20% 20% 20% 20%;
 	grid-template-rows: 20% 20% 20% 20% 20%;
-	width: calc(var(--tile-size) * 5);
-	transform: translate(-50%, -50%);
 	
 	border: var(--tile-border);
 	border-radius: 10px;
@@ -43,7 +47,7 @@ body {
 	color: var(--font-color);
 	border-radius: 0;
 	border: var(--tile-border);
-	background-color: rgba(40, 40, 50, 1.0);
+	background-color: var(--tile-background);
 	padding: 1em;
 }
 
@@ -52,10 +56,15 @@ body {
 	background-color: rgba(60, 40, 50, 1.0);
 }
 
+.bingoboard button:not(#center).happened {
+	animation: itHappened 2s forwards;
+}
+
 .bingoboard button:not(#center).happened:hover {
 	cursor: pointer;
 	border: 1px solid rgb(80, 120, 70);
 	background-color: rgba(50, 60, 50, 1.0);
+	animation: none;
 }
 
 
@@ -92,6 +101,7 @@ body {
 }
 
 #initialLoad span {
+	letter-spacing: 1px;
 	font-size: 30px;
 	text-align: center;
 	display: inline-block;
@@ -99,6 +109,23 @@ body {
 	align-self: center;
 	animation: loadingWave 1s infinite;
 	animation-delay: calc(0.1s * var(--offset))
+}
+
+.disclaimer {
+	padding-top: 1em;
+	text-align: center;
+	font-size: 10px;
+}
+
+@keyframes itHappened {
+	0%, 100% {
+		border: var(--tile-border);
+		background-color: var(--tile-background);
+	}
+	50% {
+		border-color: rgb(0, 162, 255);
+		background-color: rgb(30, 52, 65);
+	}
 }
 
 
@@ -114,6 +141,7 @@ body {
 	}
 	20% {
 		transform: translateY(-5px);
+		color: rgb(0, 153, 255);
 	}
 }
 

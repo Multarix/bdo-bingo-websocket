@@ -26,8 +26,9 @@ function setCookie(cookieName: string, value: string){
 let uuid = getCookie("uuid");
 let needsReconnect = (uuid !== "");
 
+async function connectToWebsocket(){
+	let socketConnected = false;
 
-function connectToWebSocket(){
 	const socket = new WebSocket("wss:bingo.multarix.com");
 	socket.addEventListener("open", () => {
 		console.log("[Join] Connected to websocket");
@@ -48,6 +49,7 @@ function connectToWebSocket(){
 		const obj = JSON.parse(message);
 
 		if((uuid && !obj.recon && needsReconnect)) return; // If our cookie has a uuid set and the obj.recon is not true, we can ignore this
+		needsReconnect = false;
 
 		const centerBox = document.getElementById(`center`) as HTMLButtonElement;
 		centerBox.innerText = "Free Parking\n(Bugatti)";
@@ -61,11 +63,21 @@ function connectToWebSocket(){
 			const box = document.getElementById(`box${i}`) as HTMLButtonElement;
 			box.innerText = text;
 
-			box.className = "";
-			if(obj.hasHappened.includes(text)) box.className = "happened";
+			if(box.className !== "confirmed"){
+				box.className = "";
+				if(obj.hasHappened.includes(text)) box.className = "happened";
+			}
 		}
 
-		needsReconnect = false;
+		if(!socketConnected){
+			for(let i = 0; i < 24; i++){
+				const box = document.getElementById(`box${i}`) as HTMLButtonElement;
+				if(box.className === "happened") box.className = "confirmed";
+			}
+
+			socketConnected = true;
+		}
+
 
 		uuid = obj.uuid;
 		setCookie("uuid", obj.uuid);
@@ -80,13 +92,12 @@ function connectToWebSocket(){
 	socket.addEventListener("close", () => {
 		console.log("[Left] Disonnected from websocket, attempting to reconnect...");
 		setCookie("uuid", uuid);
-		setTimeout(connectToWebSocket, 1000);
+		setTimeout(connectToWebsocket, 1000);
 	});
 }
 
 
-function init(){
-
+async function init(){
 	for(let i = 0; i < 24; i++){
 		const box = document.getElementById(`box${i}`) as HTMLButtonElement;
 		box.addEventListener("click", () => {
@@ -94,7 +105,9 @@ function init(){
 		});
 	}
 
-	connectToWebSocket();
+	await connectToWebsocket();
+
+
 }
 
 
