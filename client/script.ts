@@ -52,6 +52,9 @@ function connectToWebSocket(){
 		const centerBox = document.getElementById(`center`) as HTMLButtonElement;
 		centerBox.innerText = "Free Parking\n(Bugatti)";
 
+		const initialLoad = document.getElementById("initialLoad") as HTMLDivElement;
+		initialLoad.style.display = "none";
+
 		for(let i = 0; i < obj.bingoBoard.length; i++){
 			const text = obj.bingoBoard[i];
 
