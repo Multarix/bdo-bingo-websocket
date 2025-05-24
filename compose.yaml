@@ -7,4 +7,5 @@ services:
     env_file: .env
     environment:
       FORCE_COLOR: 1
+    restart: on-failure
   
