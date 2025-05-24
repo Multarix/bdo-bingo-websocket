@@ -12,9 +12,9 @@ const debugEnabled = (process.env.SHOW_DEBUG === "true");
 const bingoCellText = [
 	"Wukong", "New Class\n(Not Wukong)", "New Outfit(s)", "J Hammer(s)", "PvE Balance Changes", "Demon Realm Teaser", "Mountain of Dawnbreak Teaser", "Free PEN Debo", "Elviah Mediah", "PA Apology",
 	"Sovereign Offhand", "'Sovereign' Armor", "Console Mentioned", "Players 'Enjoy' Fishing", "C8-10 Shrine Boss", "New Party Shrine Boss", "New Mount/ Dragon", "Lifeskill Changes", "Alchemy Stone Rework",
-	"Who Asked For This?", "Nodewar Rework", "Quality-of-Life Changes", "Altar Of Blood Returns", "New Dehkia Spot", "New World Boss", "Mainhand 'Heart' Item", "Trade Reimplimented As Land Bartering",
-	"New Hardcore Season", "Open-World PvP Changes", "New Treasure Item", "PvE Servers", "KR Gets Something First", "China Number One", "'Listening To Your Feedback'", "Guild/ Alliance Changes",
-	"'Time Travel' Map", "Crimson Desert Mentioned", "More Party Grind Spots", "Auto-Grinding Added", "Crossplay with Console", "Shai Rework"
+	"Who Asked For This?", "Nodewar Rework", "Quality-of-Life Changes", "Altar Of Blood Returns", "Savage Rift Returns", "New Dehkia Spot", "New World Boss", "Mainhand 'Heart' Item", "Trade Reimplimented As Land Bartering",
+	"New Hardcore Season", "Hardcore Rework", "Open-World PvP Changes", "New Treasure Item", "PvE Servers", "KR Gets Something First", "China Number One", "'Listening To Your Feedback'", "Guild/ Alliance Changes",
+	"'Time Travel' Map", "Crimson Desert Mentioned", "More Party Grind Spots", "Auto-Grinding Added", "Crossplay with Console", "Shai Rework", "Black Desert Mobile Mentioned"
 ];
 
 
