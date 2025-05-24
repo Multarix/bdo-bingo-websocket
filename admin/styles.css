@@ -1,0 +1,107 @@
+:root {
+	--font-color: rgb(245, 245, 245);
+	--background-color: rgb(15, 15, 20);
+	--tile-size: 150px;
+	--tile-border: 1px solid rgb(70, 70, 80);
+	--tile-border-radius: 10px;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--background-color);
+	color: var(--font-color);
+}
+
+
+#bingoButtons {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 80vw;
+	height: 80vh;
+	
+	margin: 0 auto;
+	color: var(--font-color);
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--tile-size), var(--tile-size)));
+	grid-template-rows: repeat(auto-fill, minmax(var(--tile-size), var(--tile-size)));
+	gap: 10px;
+}
+
+#bingoButtons button {
+	font-weight: bolder;
+	height: var(--tile-size);
+	width: var(--tile-size);
+
+	color: var(--font-color);
+	border-radius: 0;
+	border: var(--tile-border);
+	background-color: rgba(40, 40, 50, 1.0);
+	padding: 1em;
+	cursor: pointer;
+}
+
+#bingoButtons button:hover {
+	border: 1px solid rgb(80, 120, 70);
+	background-color: rgba(50, 60, 50, 1.0);
+}
+
+#bingoButtons button.happened {
+	border: 1px solid rgb(80, 200, 80);
+	background-color: rgb(60, 90, 60);
+}
+
+#bingoButtons button.happened:hover {
+	border: 1px solid rgb(120, 70, 70);
+	background-color: rgba(60, 40, 50, 1.0);
+}
+
+
+#initialLoad {
+	width: 100vw;
+	height: 100vh;
+	background: rgba(20, 20, 20, 0.8);
+	position: absolute;
+	display: flex;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	align-items: center;
+	justify-content: center;
+}
+
+#initialLoad span {
+	letter-spacing: 1px;
+	font-size: 30px;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	align-self: center;
+	animation: loadingWave 1s infinite;
+	animation-delay: calc(0.1s * var(--offset))
+}
+
+
+@keyframes rotate {
+	to {
+		--angle: 360deg;
+	}
+}
+
+@keyframes loadingWave {
+	0%,40%,100% {
+		transform: translateY(0);
+	}
+	20% {
+		transform: translateY(-5px);
+		color: rgb(0, 153, 255);
+	}
+}
+
+@property --angle {
+	syntax: '<angle>';
+	initial-value: 0deg;
+	inherits: false;
+}
