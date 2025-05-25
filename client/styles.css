@@ -8,6 +8,9 @@
 }
 
 body {
+	font-size: 16px;
+	font-weight: bolder;
+	text-align: center;
 	margin: 0;
 	padding: 0;
 	background-color: var(--background-color);
@@ -40,7 +43,6 @@ body {
 
 
 .bingoboard button {
-	font-weight: bolder;
 	height: var(--tile-size);
 	width: var(--tile-size);
 
@@ -149,4 +151,35 @@ body {
 	syntax: '<angle>';
 	initial-value: 0deg;
 	inherits: false;
+}
+
+@media only screen and (max-width: 768px){
+	body {
+		font-size: 8px;
+	}
+	
+	.container {
+		position: absolute;
+		margin: auto;
+		width: 100%;
+		
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+	}
+	
+	.bingoboard {
+		width: 98vw;
+		height: 98vw;
+	}
+	
+	.bingoboard button {
+		width: 100%;
+		height: 100%;
+		padding: 2px;
+	}
+	
+	.disclaimer {
+		font-size: 6px;
+	}
 }
