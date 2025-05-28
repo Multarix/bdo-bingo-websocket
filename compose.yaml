@@ -8,4 +8,5 @@ services:
     environment:
       FORCE_COLOR: 1
     restart: on-failure
+    platform: linux/arm64/v8
   
