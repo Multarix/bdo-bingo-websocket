@@ -3,6 +3,7 @@
 	--background-color: rgb(15, 15, 20);
 	--tile-size: 150px;
 	--tile-border: 1px solid rgb(70, 70, 80);
+	--tile-background: rgba(40, 40, 50, 1.0);
 	--tile-border-radius: 10px;
 }
 
@@ -15,10 +16,10 @@ body {
 
 
 #bingoButtons {
-	position: absolute;
+	/* position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
 	width: 80vw;
 	height: 80vh;
 	
@@ -38,7 +39,7 @@ body {
 	color: var(--font-color);
 	border-radius: 0;
 	border: var(--tile-border);
-	background-color: rgba(40, 40, 50, 1.0);
+	background-color: var(--tile-background);
 	padding: 1em;
 	cursor: pointer;
 }
@@ -81,6 +82,28 @@ body {
 	align-self: center;
 	animation: loadingWave 1s infinite;
 	animation-delay: calc(0.1s * var(--offset))
+}
+
+#initialLoad {
+	display: none;
+}
+
+#searchbar {
+	width: 60%;
+	font-size: 30px;
+	border: var(--tile-border);
+	border-radius: var(--tile-border-radius);
+	padding: 8px;
+	background-color: var(--tile-background);
+	color: var(--font-color);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1em;
+	padding: 2em;
 }
 
 

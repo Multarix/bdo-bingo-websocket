@@ -91,5 +91,22 @@ function adminInit(){
 	adminConnectToWebsocket();
 }
 
+const bingoButtonsContainer = document.getElementById("bingoButtons") as HTMLDivElement;
+const searchbar = document.getElementById("searchbar") as HTMLInputElement;
+searchbar.addEventListener("keyup", () => {
+	const children = Array.from(bingoButtonsContainer.children);
+	const searchText = searchbar.value.toLowerCase();
+
+	children.forEach((element) => {
+		if(element instanceof HTMLButtonElement){
+			if(searchText === ""){
+				return element.style.display = "block";
+			}
+
+			if(element.innerText.toLowerCase().includes(searchText)) return element.style.display = "block";
+			if(!element.innerText.toLowerCase().includes(searchText)) return element.style.display = "none";
+		}
+	});
+});
 
 adminInit();
