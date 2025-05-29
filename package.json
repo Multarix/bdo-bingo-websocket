@@ -13,8 +13,8 @@
 		"build-client": "node tools/prestart.js",
 		"prestart": "tsc",
 		"start": "node dist/server/main.js",
-		"build": "docker buildx build -t bingo-websocket . --platform linux/arm64/v8",
 		"prebuild": "tsc",
+		"build": "docker buildx build -t bingo-websocket . --platform linux/arm64/v8",
 		"predocker": "npm run build",
 		"docker": "docker compose up -d"
 	},

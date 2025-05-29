@@ -1,1 +1,1 @@
-sudo docker run -d -p 8080:8080 --env-file bingo.env bingo-websocket
+sudo docker run -d -p 8080:8080 --env-file bingo.env bingo-websocket --restart on-failure --name BDO-Bingo
