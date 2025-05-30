@@ -16,7 +16,8 @@
 		"prebuild": "tsc",
 		"build": "docker buildx build -t bingo-websocket . --platform linux/arm64/v8",
 		"predocker": "npm run build",
-		"docker": "docker compose up -d"
+		"docker": "docker compose up -d",
+		"save": "docker save bingo-websocket -o ./bingo.tar"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.26.0",
