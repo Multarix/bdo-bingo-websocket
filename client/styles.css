@@ -17,6 +17,10 @@ body {
 	color: var(--font-color);
 }
 
+h1 {
+	font-size: 20px;
+}
+
 .container {
 	position: absolute;
 	top: 50%;
