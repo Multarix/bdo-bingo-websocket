@@ -1,5 +1,6 @@
-const startTime = 1751092200000;
+let startTime = 0;
 const countdown = document.getElementById("countdown") as HTMLElement;
+let countdownTimer: ReturnType<typeof setInterval> ;
 
 /**
  * @name humanTime
@@ -17,7 +18,7 @@ const countdown = document.getElementById("countdown") as HTMLElement;
  * @example const format = humanTime(951000, "\\m minutes \\s seconds");
  * console.log(format); // 15 minutes 51 seconds
 **/
-function humanTime(ms: number, format = "\\h hours \\m minutes \\s seconds"){
+function humanTime(ms: number, format: string = "\\h hours \\m minutes \\s seconds"): string{
 	if(!format) return `${ms}ms`;
 
 	const baseMilliseconds = ms;
@@ -112,6 +113,7 @@ async function connectToWebsocket(){
 				recon: true
 			};
 
+			// { "recon": true, "uuid": "2748ef56-f67d-40a3-a02f-968e8aaf06bf" }
 			socket.send(JSON.stringify(reconnectObj));
 		}
 	});
@@ -120,9 +122,20 @@ async function connectToWebsocket(){
 	socket.addEventListener("message", (event) => {
 		const message = event.data;
 		const obj = JSON.parse(message);
+		if(obj.startTime && !countdownTimer){
+			startTime = obj.startTime;
+			countdownTimer = setInterval(updateCountdown, 1000);
+		}
 
 		if((uuid && !obj.recon && needsReconnect)) return; // If our cookie has a uuid set and the obj.recon is not true, we can ignore this
 		needsReconnect = false;
+
+		if(uuid && uuid !== obj.uuid || !uuid){ // The UUID Timed out, or something weird happened, so we'll just reset the entire board
+			for(let i = 0; i < 24; i++){
+				const box = document.getElementById(`box${i}`) as HTMLButtonElement;
+				box.className = "";
+			}
+		}
 
 		const centerBox = document.getElementById(`center`) as HTMLButtonElement;
 		centerBox.innerText = "Free Parking\n(Bugatti)";
@@ -179,7 +192,6 @@ async function init(){
 	}
 
 	await connectToWebsocket();
-	setInterval(updateCountdown, 1000);
 }
 
 

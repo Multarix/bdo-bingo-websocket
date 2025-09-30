@@ -17,6 +17,7 @@ export interface BingoMessage {
 
 export interface ReturnMessage {
 	uuid: string;
+	startTime: number
 	bingoBoard: string[];
 	hasHappened: string[];
 	recon?: boolean;

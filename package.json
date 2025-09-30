@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "Black Desert websocket bingo",
 	"type": "module",
-	"main": "main.js",
+	"main": "./dist/server/main.js",
 	"author": "Multarix",
 	"license": "MIT",
 	"scripts": {
@@ -15,6 +15,7 @@
 		"start": "node dist/server/main.js",
 		"prebuild": "tsc",
 		"build": "docker buildx build -t bingo-websocket . --platform linux/arm64/v8",
+		"postbuild": "npm run save",
 		"predocker": "npm run build",
 		"docker": "docker compose up -d",
 		"save": "docker save bingo-websocket -o ./bingo.tar"

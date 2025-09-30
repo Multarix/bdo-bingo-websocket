@@ -7,7 +7,7 @@ import { BingoMessage, BingoSocket, ReturnMessage, Client } from "../types/inter
 
 
 const debugEnabled = (process.env.SHOW_DEBUG === "true");
-
+const START_TIME = 1764171000000;
 
 const bingoCellText = [
 	"Wukong", "New Class\n(Not Wukong)", "New Outfit(s)", "J Hammer(s)", "PvE Balance Changes", "Demon Realm Teaser", "Mountain of Dawnbreak Teaser", "Free PEN Debo", "Elviah Mediah", "PA Apology",
@@ -115,6 +115,7 @@ export function newConnection(ws: BingoSocket){
 
 	const obj = {
 		uuid: ws.uuid,
+		startTime: START_TIME,
 		bingoBoard: ws.bingoBoard,
 		hasHappened: hasHappened
 	};
@@ -135,8 +136,8 @@ export function clientLeave(ws: BingoSocket){
 	// const timeout = setTimeout(removeOldClient, 60000, ws.uuid); // 1 min timeout
 
 	const obj = {
-		bingoBoard: ws.bingoBoard as string[],
 		uuid: ws.uuid as string,
+		bingoBoard: ws.bingoBoard as string[],
 		timeout: timeout
 	};
 
@@ -167,6 +168,7 @@ export function ping(wss: WebSocketServer){
 export function handleMessage(wss: WebSocketServer, ws: BingoSocket, message: RawData){
 	const obj: ReturnMessage = {
 		uuid: ws.uuid as string,
+		startTime: START_TIME,
 		bingoBoard: ws.bingoBoard as string[],
 		hasHappened: hasHappened as string[]
 	};
