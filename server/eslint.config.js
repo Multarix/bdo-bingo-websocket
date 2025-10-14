@@ -25,7 +25,6 @@ export default defineConfig([
 			"no-console": "off",
 			"no-empty-function": "error",
 			"@stylistic/no-floating-decimal": "error",
-			"@stylistic/no-multi-spaces": "error",
 			"@stylistic/no-multiple-empty-lines": ["error", { "max": 3, "maxEOF": 1, "maxBOF": 0 }],
 			"@stylistic/no-trailing-spaces": ["error"],
 			"no-unused-vars": ["error", { "varsIgnorePattern": "^_" }],

@@ -15,10 +15,10 @@ const wss = new WebSocketServer({ port: HOST_PORT });
 const pingInterval = setInterval(f.ping.bind(null, wss), 30000); // Every 30 seconds, check if any of the connections were dropped.
 
 wss.on('connection', (ws: BingoSocket) => {
-	f.newConnection(ws);
+	f.newConnection(wss, ws);
 	ws.on("message", (message) => f.handleMessage(wss, ws, message));
 	ws.on("pong", f.heartBeat.bind(ws));
-	ws.on("close", () => f.clientLeave(ws));
+	ws.on("close", () => f.clientLeave(wss, ws));
 	ws.on("error", (error) => f.log("error", error.message));
 });
 

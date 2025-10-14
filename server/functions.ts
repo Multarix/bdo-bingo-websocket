@@ -9,15 +9,16 @@ import { BingoMessage, BingoSocket, ReturnMessage, Client } from "../types/inter
 const debugEnabled = (process.env.SHOW_DEBUG === "true");
 const START_TIME = 1764171000000;
 
-const bingoCellText = [
-	"Wukong", "New Class\n(Not Wukong)", "New Outfit(s)", "J Hammer(s)", "PvE Balance Changes", "Demon Realm Teaser", "Mountain of Dawnbreak Teaser", "Free PEN Debo", "Elviah Mediah", "PA Apology",
-	"Sovereign Offhand", "'Sovereign' Armor", "Console Mentioned", "Players 'Enjoy' Fishing", "C8-10 Shrine Boss", "New Party Shrine Boss", "New Mount/ Dragon", "Lifeskill Changes", "Alchemy Stone Rework",
-	"Who Asked For This?", "Nodewar Rework", "Quality-of-Life Changes", "Altar Of Blood Returns", "Savage Rift Returns", "New Dehkia Spot", "New World Boss", "Mainhand 'Heart' Item", "Trade Reimplimented As Land Bartering",
-	"New Hardcore Season", "Hardcore Rework", "Open-World PvP Changes", "New Treasure Item", "PvE Servers", "KR Gets Something First", "China Number One", "'Listening To Your Feedback'", "Guild/ Alliance Changes",
-	"'Time Travel' Map", "Crimson Desert Mentioned", "More Party Grind Spots", "Auto-Grinding Added", "Crossplay with Console", "Shai Rework", "Black Desert Mobile Mentioned",
-	"Shared Weight/inv slots", "Shadow Arena mentioned", "Tower Type Dungeon", "New Backpack", "New Journal", "1+1 Box Sale", "Complete Bosses Rework"
-];
 
+const bingoCellText = [
+	"Savior",			"1+1 Box Sale",			"New Dehkia Spot",			"PvE Balance Changes",		"More Party Grind Spots",		"KR Gets Something First",			"'Listening To Your Feedback'",
+	"New Mount",		"New Outfit(s)",		"Console Mentioned",		"BDO China Mentioned",		"Complete Bosses Rework",		"Quality-of-Life Changes",			"New Class Teased (Not Savior)",
+	"PA Apology",		"Free PEN Debo",		"Lifeskill Changes",		"Who Asked For This?",		"Open-World PvP Changes",		"Crimson Desert Mentioned",			"Delays",
+	"J Hammer(s)",		"Elviah Mediah",		"New Treasure Item",		"Savage Rift Returns",		"Altar Of Blood Returns",		"More C8-10 Shrine Bosses",			"TO BE DECIDED",
+	"New Journal",		"Nodewar Rework",		"Tower Type Dungeon",		"New Hardcore Season",		"Players 'Enjoy' Fishing",		"Trade Becomes Land Bartering",		"TO BE DECIDED",
+	"PvE Servers",		"New World Boss",		"PA is Out of Touch",		"Alchemy Stone Rework",		"Guild/ Alliance Changes",		"Mountain of Dawnbreak Teaser",		"TO BE DECIDED",
+	"New Backpack",		"Hardcore Rework",		"Auto-Grinding Added",		"New Party Shrine Boss",	"Shared Weight/Inv slots",		"Edania Stops Being Time-Gated",	"TO BE DECIDED"
+];
 
 const hasHappened: string[] = [];
 const disconnectedClients: Client[] = [];
@@ -106,7 +107,7 @@ export function log(type: LogType, message: string){
 }
 
 
-export function newConnection(ws: BingoSocket){
+export function newConnection(wss: WebSocketServer, ws: BingoSocket){
 	ws.isAlive = true;
 	ws.announced = false;
 	ws.isAdmin = false;
@@ -124,13 +125,13 @@ export function newConnection(ws: BingoSocket){
 
 	if(!ws.announced){
 		ws.announced = true;
-		log("join", `Client Connected: ${chalk.magenta(ws.uuid)}`);
+		log("join", `Client Connected: ${chalk.magenta(ws.uuid)} | Total Connected Clients: ${chalk.yellowBright(wss.clients.size)}`);
 	}
 }
 
 
-export function clientLeave(ws: BingoSocket){
-	log("leave", `Client Disconnected: ${chalk.magenta(ws.uuid)}`);
+export function clientLeave(wss: WebSocketServer, ws: BingoSocket){
+	log("leave", `Client Disconnected: ${chalk.magenta(ws.uuid)} | Total Connected Clients: ${chalk.yellowBright(wss.clients.size)}`);
 
 	const timeout = setTimeout(removeOldClient, 3600000, ws.uuid); // 1 hour timeout
 	// const timeout = setTimeout(removeOldClient, 60000, ws.uuid); // 1 min timeout
@@ -184,7 +185,7 @@ export function handleMessage(wss: WebSocketServer, ws: BingoSocket, message: Ra
 				return ws.send(JSON.stringify(obj));
 			}
 
-			log("info", `${chalk.magenta(ws.uuid)} -> ${chalk.magenta(msg.uuid)}`);
+			log("info", `${chalk.magenta(ws.uuid)} -> ${chalk.magenta(msg.uuid)} | Total Connected Clients: ${chalk.yellowBright(wss.clients.size)}`);
 
 			ws.uuid = disconnectedClients[index].uuid;
 			ws.bingoBoard = disconnectedClients[index].bingoBoard;
