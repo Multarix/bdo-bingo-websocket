@@ -14,10 +14,11 @@ const bingoCellText = [
 	"Savior",			"1+1 Box Sale",			"New Dehkia Spot",			"PvE Balance Changes",		"More Party Grind Spots",		"KR Gets Something First",			"'Listening To Your Feedback'",
 	"New Mount",		"New Outfit(s)",		"Console Mentioned",		"BDO China Mentioned",		"Complete Bosses Rework",		"Quality-of-Life Changes",			"New Class Teased (Not Savior)",
 	"PA Apology",		"Free PEN Debo",		"Lifeskill Changes",		"Who Asked For This?",		"Open-World PvP Changes",		"Crimson Desert Mentioned",			"Delays",
-	"J Hammer(s)",		"Elviah Mediah",		"New Treasure Item",		"Savage Rift Returns",		"Altar Of Blood Returns",		"More C8-10 Shrine Bosses",			"Service Shutdown Announced",
-	"New Journal",		"Nodewar Rework",		"Tower Type Dungeon",		"New Hardcore Season",		"Players 'Enjoy' Fishing",		"Trade Becomes Land Bartering",		"TO BE DECIDED",
-	"PvE Servers",		"New World Boss",		"PA is Out of Touch",		"Alchemy Stone Rework",		"Guild/ Alliance Changes",		"Mountain of Dawnbreak Teaser",		"TO BE DECIDED",
-	"New Backpack",		"Hardcore Rework",		"Auto-Grinding Added",		"New Party Shrine Boss",	"Shared Weight/Inv slots",		"Edania Stops Being Time-Gated",	"TO BE DECIDED"
+	"J Hammer(s)",		"Elvia Mediah",			"New Treasure Item",		"Savage Rift Returns",		"Altar Of Blood Returns",		"More C8-10 Shrine Bosses",			"Service Shutdown Announced",
+	"New Journal",		"Nodewar Rework",		"Tower Type Dungeon",		"New Hardcore Season",		"Players 'Enjoy' Fishing",		"Trade Becomes Land Bartering",		"BDO Classic",
+	"PvE Servers",		"New World Boss",		"PA is Out-of-Touch",		"Alchemy Stone Rework",		"Guild/ Alliance Changes",		"Mountain of Dawnbreak Teaser",		"Univeral Weapons",
+	"New Backpack",		"Hardcore Rework",		"Auto-Grinding Added",		"New Party Shrine Boss",	"Shared Weight/Inv slots",		"Edania Stops Being Time-Gated",	"Cross-Platform Play",
+	"Free Accessory", 	"Jaehee Kim Returns", 	"!raffle in Chat",			"Even More Timegates", 		"The Game Is 'Saved'", 			"Time Travel Map",					"Free Dream/ Mythical Horse"
 ];
 
 const hasHappened: string[] = [];
